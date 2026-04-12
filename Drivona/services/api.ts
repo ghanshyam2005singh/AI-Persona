@@ -4,7 +4,7 @@ import { AuthResponse, User, Chat, Message } from '../types/type';
 import { mockApiService } from './mock';
 
 const API_URL = 'http://localhost:3000/api';
-const USE_MOCK = true; // Toggle this
+const USE_MOCK = false; // Toggle this
 
 class ApiService {
   private api: AxiosInstance;
