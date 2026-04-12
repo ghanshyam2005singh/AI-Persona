@@ -1,174 +1,550 @@
-# AI Persona Engine for Behavioral Replication
+# Drivona - AI-Powered Chat Application
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
-[![React Native](https://img.shields.io/badge/React%20Native-0.70%2B-61DAFB)](https://reactnative.dev/)
+A modern, full-stack chat application built with React Native, Expo, Node.js, Express, and MongoDB. Features real-time messaging, user authentication, and AI-powered conversation mode.
 
-## 📖 Overview
+## 📱 Project Overview
 
-AI Persona is a next-generation conversational AI system designed to replicate individual behavioral patterns based on historical chat data. Unlike conventional chatbots, this system learns tone, vocabulary, emotional cadence, and response style from real conversations to generate personality-consistent responses.
-
-It transforms raw messaging history into a dynamic AI persona capable of conversational emulation.
-
-## 🎯 Problem Statement
-
-Most AI chatbots generate responses in generic tones and lack personalization. There is no system that:
-
-- Learns deeply from personal conversation history
-- Adapts to unique behavioral traits
-- Provides multi-platform chat export compatibility
-- Delivers personality-aware conversational replication
-
-## 💡 Solution
-
-This project builds a behavior-aware AI personality engine that:
-
-- Processes WhatsApp and Telegram exported chats
-- Extracts linguistic and behavioral patterns
-- Fine-tunes conversational responses
-- Deploys via a React Native mobile app
-
-The result is a chatbot that mirrors communication style rather than producing neutral AI-generated replies.
-
-## 🏗️ Architecture
-
-```
-├── backend/              # AI engine & API
-│   ├── models/          # ML models
-│   ├── parsers/         # Chat format parsers
-│   └── api/             # REST API endpoints
-├── mobile/              # React Native app
-│   ├── src/
-│   │   ├── screens/
-│   │   ├── components/
-│   │   └── services/
-└── data/                # Training data (gitignored)
-```
-
-## 🚀 Features
-
-- **Multi-Platform Support**: WhatsApp and Telegram chat import
-- **Behavioral Learning**: Tone, vocabulary, and style extraction
-- **Personality Consistency**: Context-aware response generation
-- **Mobile-First**: Cross-platform React Native application
-- **Privacy-Focused**: Local processing options available
-
-## 📋 Prerequisites
-
-- Python 3.8+
-- Node.js 16+
-- React Native CLI
-- PostgreSQL/MongoDB (optional)
-
-## 🛠️ Installation
-
-### Backend Setup
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Linux/Mac
-pip install -r requirements.txt
-```
-
-### Mobile Setup
-
-```bash
-cd mobile
-npm install
-# For iOS
-cd ios && pod install && cd ..
-```
-
-## 🎮 Usage
-
-### 1. Export Your Chat History
-- **WhatsApp**: Settings → Chats → Export Chat
-- **Telegram**: Chat → ⋮ → Export Chat History
-
-### 2. Train the Model
-```bash
-python backend/train.py --input data/chat_export.txt --platform whatsapp
-```
-
-### 3. Run the Application
-```bash
-# Backend
-python backend/app.py
-
-# Mobile
-npm start
-```
-
-## 📊 Data Format
-
-The system accepts chat exports in the following formats:
-
-**WhatsApp:**
-```
-[01/01/2024, 10:30:45] John Doe: Hello!
-[01/01/2024, 10:31:12] Jane Smith: Hi there!
-```
-
-**Telegram:**
-```json
-{
-  "messages": [
-    {
-      "date": "2024-01-01T10:30:45",
-      "from": "John Doe",
-      "text": "Hello!"
-    }
-  ]
-}
-```
-
-## 🔒 Privacy & Security
-
-- All data processing can be done locally
-- No chat data is stored on external servers by default
-- User data is encrypted at rest
-- Complies with GDPR and data protection regulations
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Claude Sonnet 4.5 for language model capabilities
-- Open-source NLP libraries
-- React Native community
-
-## 📧 Contact
-
-Project Link: [https://github.com/yourusername/AI-Persona](https://github.com/yourusername/AI-Persona)
+Drivona is a WhatsApp-like chat application that allows users to:
+- Register and login securely
+- Search and connect with other users
+- Send and receive messages in real-time
+- Toggle AI mode for AI-powered responses
+- Manage user profile
 
 ---
 
-## 📚 Documentation
+## 🛠️ Tech Stack
 
-For detailed documentation, visit our [Wiki](https://github.com/yourusername/AI-Persona/wiki)
+### **Frontend (React Native + Expo)**
+- **Framework**: Expo Router (File-based routing)
+- **Language**: TypeScript
+- **UI Framework**: React Native
+- **State Management**: React Context API
+- **HTTP Client**: Axios
+- **Local Storage**: AsyncStorage
+- **Icons**: Expo Icons (Ionicons)
+- **Styling**: React Native StyleSheet
 
-## 🛣️ Roadmap
+### **Backend (Node.js)**
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Language**: TypeScript
+- **Database**: MongoDB
+- **Authentication**: JWT (JSON Web Tokens)
+- **Password Hashing**: bcryptjs
+- **CORS**: cors package
+- **Environment Config**: dotenv
 
-- [ ] Support for additional messaging platforms (Discord, Slack)
-- [ ] Advanced emotion detection
-- [ ] Multi-language support
-- [ ] Voice tone replication
-- [ ] Web dashboard interface
-- [ ] Real-time learning capabilities
+### **Database (MongoDB)**
+- **Collections**:
+  - `users` - User accounts and profiles
+  - `chats` - Chat conversations between users
+  - `messages` - Individual messages within chats
 
-## ⚠️ Disclaimer
+---
 
-This tool is designed for personal use and educational purposes. Please ensure you have proper consent before training on someone else's chat data. Respect privacy and data protection laws.
+## 📁 Project Structure
+
+```
+AI-Persona/
+├── Drivona/                          
+│   ├── app/
+│   │   ├── _layout.tsx               # Root navigation
+│   │   ├── (auth)/
+│   │   │   ├── _layout.tsx
+│   │   │   ├── login.tsx             # Login screen
+│   │   │   └── register.tsx          # Registration screen
+│   │   ├── (tabs)/
+│   │   │   ├── _layout.tsx           # Tab navigation
+│   │   │   ├── index.tsx             # Chats list screen
+│   │   │   └── profile.tsx           # User profile screen
+│   │   ├── chat/
+│   │   │   └── [id].tsx              # Individual chat screen
+│   │   └── search.tsx                # Search users screen
+│   ├── components/
+│   │   ├── chat/
+│   │   │   ├── MessageBubble.tsx
+│   │   │   ├── ChatHeader.tsx
+│   │   │   └── ChatInput.tsx
+│   │   └── common/
+│   │       ├── Avatar.tsx
+│   │       └── LoadingSpinner.tsx
+│   ├── constants/
+│   │   └── colors.js                 # Theme & Colors
+│   ├── context/
+│   │   └── AuthContext.tsx           # Authentication state
+│   ├── services/
+│   │   ├── api.js                    # Axios HTTP client
+│   │   └── mockApi.js                # Mock data (development)
+│   ├── types/
+│   │   └── index.js                  # TypeScript interfaces
+│   ├── utils/
+│   │   └── formatters.js             # Helper functions
+│   ├── hooks/
+│   ├── app.json
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── .env
+│   └── README.md
+│
+└── Drivona-Backend/                  
+    ├── src/
+    │   ├── models/
+    │   │   ├── User.js               # User schema
+    │   │   ├── Chat.js               # Chat schema
+    │   │   └── Message.js            # Message schema
+    │   ├── controllers/
+    │   │   ├── authController.js     # Auth logic (register/login)
+    │   │   ├── userController.js     # User operations
+    │   │   ├── chatController.js     # Chat operations
+    │   │   └── messageController.js  # Message operations
+    │   ├── routes/
+    │   │   ├── authRoutes.js         # /api/auth/*
+    │   │   ├── userRoutes.js         # /api/users/*
+    │   │   └── chatRoutes.js         # /api/chats/*
+    │   ├── middleware/
+    │   │   └── auth.js               # JWT verification
+    │   ├── services/
+    │   │   └── aiService.js          # AI response generation
+    │   ├── types/
+    │   │   └── index.js              # TypeScript interfaces
+    │   ├── utils/
+    │   │   └── validators.js         # Input validation
+    │   └── index.js                  # Main server file
+    ├── dist/                         # Compiled JavaScript
+    ├── .env
+    ├── package.json
+    ├── tsconfig.json
+    ├── nodemon.json
+    └── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v16 or higher)
+- **npm** or **yarn**
+- **MongoDB** (local or Atlas)
+- **Expo CLI** (`npm install -g expo-cli`)
+
+### Installation
+
+#### **1. Clone the Repository**
+
+```bash
+git clone https://github.com/yourusername/drivona.git
+cd drivona
+```
+
+#### **2. Setup Backend**
+
+```bash
+cd Drivona-Backend
+
+# Install dependencies
+npm install
+
+# Create .env file
+cat > .env << EOF
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/drivona
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:8081
+EOF
+
+# Start MongoDB
+docker run -d -p 27017:27017 --name mongodb mongo:latest
+# OR if MongoDB is installed locally:
+mongod
+
+# Start backend server
+npm run dev
+```
+
+Server will run on `http://localhost:3000`
+
+#### **3. Setup Frontend**
+
+```bash
+cd ../Drivona
+
+# Install dependencies
+npm install
+
+# Create .env file (optional)
+cat > .env << EOF
+EXPO_PUBLIC_API_URL=http://localhost:3000/api
+EOF
+
+# Start Expo development server
+npx expo start
+
+# Press:
+# - 'i' for iOS simulator
+# - 'a' for Android emulator
+# - 'w' for web
+```
+
+---
+
+## 📚 API Documentation
+
+### **Authentication Endpoints**
+
+#### Register User
+```
+POST /api/auth/register
+
+Body:
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Response:
+{
+  "token": "jwt_token_here",
+  "user": {
+    "_id": "user_id",
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+}
+```
+
+#### Login User
+```
+POST /api/auth/login
+
+Body:
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Response:
+{
+  "token": "jwt_token_here",
+  "user": { ... }
+}
+```
+
+#### Logout
+```
+POST /api/auth/logout
+Headers: Authorization: Bearer <token>
+```
+
+---
+
+### **User Endpoints**
+
+#### Search Users
+```
+GET /api/users/search?email=john
+Headers: Authorization: Bearer <token>
+
+Response: User[]
+```
+
+#### Get Profile
+```
+GET /api/users/profile
+Headers: Authorization: Bearer <token>
+
+Response: User
+```
+
+#### Update Profile
+```
+PUT /api/users/profile
+Headers: Authorization: Bearer <token>
+
+Body:
+{
+  "name": "Updated Name",
+  "avatar": "avatar_url"
+}
+
+Response: User
+```
+
+---
+
+### **Chat Endpoints**
+
+#### Get All Chats
+```
+GET /api/chats
+Headers: Authorization: Bearer <token>
+
+Response: Chat[]
+```
+
+#### Get Chat by ID
+```
+GET /api/chats/:chatId
+Headers: Authorization: Bearer <token>
+
+Response: Chat
+```
+
+#### Create Chat
+```
+POST /api/chats
+Headers: Authorization: Bearer <token>
+
+Body:
+{
+  "participantId": "user_id_of_participant"
+}
+
+Response: Chat
+```
+
+#### Toggle AI Mode
+```
+PATCH /api/chats/:chatId/ai-mode
+Headers: Authorization: Bearer <token>
+
+Body:
+{
+  "enabled": true
+}
+
+Response: Chat
+```
+
+---
+
+### **Message Endpoints**
+
+#### Get Chat Messages
+```
+GET /api/chats/:chatId/messages?page=1&limit=50
+Headers: Authorization: Bearer <token>
+
+Response: Message[]
+```
+
+#### Send Message
+```
+POST /api/chats/:chatId/messages
+Headers: Authorization: Bearer <token>
+
+Body:
+{
+  "content": "Hello!",
+  "aiMode": false
+}
+
+Response: Message
+```
+
+---
+
+## 🔐 Authentication
+
+The application uses **JWT (JSON Web Tokens)** for authentication:
+
+1. User registers/logs in
+2. Backend generates JWT token
+3. Token stored in AsyncStorage (frontend)
+4. Token sent in `Authorization: Bearer <token>` header for protected routes
+5. Backend verifies token using `authMiddleware`
+
+**Token Expiry**: 7 days
+
+---
+
+## 🤖 AI Mode
+
+When AI mode is enabled in a chat:
+
+1. User sends a message
+2. Backend creates the message
+3. AI Service generates an automated response
+4. Response is added to the chat as an `isAI: true` message
+
+AI responses are generated by the `aiService.js` file.
+
+---
+
+## 📝 Database Schema
+
+### **User**
+```typescript
+{
+  _id: ObjectId
+  name: string (required)
+  email: string (required, unique)
+  password: string (hashed, required)
+  avatar: string (optional)
+  createdAt: Date
+  updatedAt: Date
+}
+```
+
+### **Chat**
+```typescript
+{
+  _id: ObjectId
+  participants: [ObjectId, ObjectId] (2 user IDs)
+  lastMessage: ObjectId (reference to Message)
+  aiModeEnabled: boolean (default: false)
+  unreadCount: number (default: 0)
+  createdAt: Date
+  updatedAt: Date
+}
+```
+
+### **Message**
+```typescript
+{
+  _id: ObjectId
+  chatId: ObjectId (reference to Chat)
+  senderId: ObjectId (reference to User)
+  content: string (required)
+  isAI: boolean (default: false)
+  createdAt: Date
+  updatedAt: Date
+}
+```
+
+---
+
+## 🧪 Testing
+
+### Test Credentials (Development)
+
+When using mock API (frontend development):
+```
+Email: test@drivona.com
+Password: password
+```
+
+Or create a new account via registration.
+
+### Searchable Users (Mock)
+```
+john@drivona.com
+jane@drivona.com
+mike@drivona.com
+```
+
+---
+
+## 📦 Deployment
+
+### Frontend Deployment (Expo)
+
+```bash
+cd Drivona
+
+# Build for production
+eas build --platform all
+
+# Submit to app stores
+eas submit --platform ios
+eas submit --platform android
+```
+
+### Backend Deployment (Heroku/Railway/Render)
+
+```bash
+cd Drivona-Backend
+
+# Build TypeScript
+npm run build
+
+# Deploy
+git push heroku main
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### MongoDB Connection Error
+```
+Make sure MongoDB is running:
+docker ps  # Check if MongoDB container is running
+docker start mongodb  # Start if stopped
+```
+
+### Port Already in Use
+```bash
+# Change PORT in .env or kill process using port 3000
+lsof -i :3000
+kill -9 <PID>
+```
+
+### CORS Error
+```
+Update CORS_ORIGIN in backend .env:
+CORS_ORIGIN=http://your-frontend-url
+```
+
+---
+
+## 📄 Environment Variables
+
+### Frontend (.env)
+```
+EXPO_PUBLIC_API_URL=http://localhost:3000/api
+```
+
+### Backend (.env)
+```
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/drivona
+JWT_SECRET=your_secret_key_here
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:8081
+```
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Ghanshyam Singh**
+- GitHub: [@yourusername](https://github.com/yourusername)
+- Email: ghanshyam@example.com
+
+---
+
+## 🙏 Acknowledgments
+
+- Expo for the React Native framework
+- Express.js for the server framework
+- MongoDB for the database
+- All contributors and supporters
+
+---
+
+## 📞 Support
+
+For support, open an issue on GitHub or contact the author.
+
+**Happy Coding! 🚀**

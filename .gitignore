@@ -55,7 +55,6 @@ checkpoints/
 data/
 *.txt
 *.csv
-*.json
 *.zip
 chat_exports/
 training_data/
